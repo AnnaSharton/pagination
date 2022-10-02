@@ -40,8 +40,7 @@
 			define('ROOT_DIR', dirname(__FILE__));  //с помощью dirname выделяю путь от корня до нужного файла и присваиваю для root_dir
 			$dir='texts/';	
 			
-			///////       если задан гет-запрос show тогда вывожу содержимое статьи    ///////
-
+			//////  если задан гет-запрос show тогда вывожу содержимое статьи ///////
 			if(isset($_GET['show'])){    
 		?>
 			<div class="open-article">
@@ -54,9 +53,8 @@
 						unset($lines[0]); //удаляю нулевую строку
 						$text=implode('<br>', $lines); //мобираю текст в строку без нулевой строки
 						$text='<p>'.str_replace("\n",'</p><p>', $text).'</p>'; //разбиваю строку на абзацы для красивого вывода статьи
-						
 					?>	
-
+					
                 <!--Хлебные крошки----->
                 <a href="./index.php">Главная</a> > <?=$head?>
 				<!--вывожу сначала первую строку-заголовок статьи:-->
@@ -83,7 +81,7 @@
 						echo '<br><p><a href="index.php">Вернуться на главную</a></p>';
 					} 
 
-			//////////////////////////////гет-параметр add вывожу формы добавления статьи  ////////////////////////////////
+			/////////    гет-параметр add вывожу формы добавления статьи   /////////////
 					else if (isset($_GET['add'])) {
 						//перед формой вывожу сообщения:
 						if (isset($_GET['add']) and $_GET['add']==='uploaded') { //если все ок загружено и был редирект
@@ -92,7 +90,6 @@
 							echo '<br><div class="error">Файл не выбран</div>';
 							}
 						?>
-			
 							<div class="form-containers">
 								<!--  Форма простой загрузки  -->
 								<div class="left-form">
@@ -103,7 +100,6 @@
 										<input type="submit" name="submit" value="Добавить"><br>
 									</form>
 									
-
 										<?php /// обычная загрузка файла 
 										if($_FILES and is_uploaded_file($_FILES['file']['tmp_name']) and isset($_POST['submit'])) { //превоеряю загружен ли файл
 											
@@ -111,8 +107,7 @@
 											header('Location: index.php?add=uploaded'); //редирект
 										} else if ($_FILES and !is_uploaded_file($_FILES['file']['tmp_name']) and isset($_POST['submit']))  {
 											header('Location: index.php?add=errors'); 
-										}
-									
+										}	
 									?>
 								</div>
 								<div class="right-form">
@@ -131,7 +126,6 @@
 								
 							</div><p style="margin-left:50px;"><a href="index.php">Вернуться на главную</a></p>
 							
-
 						<?php
 						//добавление статьи вручную:
 										if(isset($_POST['h1']) and isset($_POST['article-text']) and isset($_POST['submit'])) {
@@ -143,7 +137,7 @@
 											header('Location: index.php?add=uploaded'); //редирект
 										} 
 			}
-			//////////////а иначе вывожу каталог статей//////////////
+			/////// а иначе вывожу каталог статей  ///////
 				
 			else {	?>
 			<div class="container">
@@ -188,7 +182,6 @@
 										} 	
 									}
 								}
-
 			  				  ?>
   
 			 			</ul>
